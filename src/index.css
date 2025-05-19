@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+
+:root {
+    background-color: #f5f5f5;
+}
+
+body {
+    font-family: 'Roboto', sans-serif; /* Ensure this matches your tailwind.config.js */
+}
