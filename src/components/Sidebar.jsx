@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import { IoLayersOutline, IoPricetagsOutline } from "react-icons/io5";
-import { LuBox, LuUsers, LuChevronRight, LuMenu } from "react-icons/lu";
-import { RiMotorbikeLine } from "react-icons/ri";
+import { LuBox, LuUsers, LuChevronRight, LuMenu, LuCalendarClock } from "react-icons/lu";
+import { RiMotorbikeLine, RiServiceLine } from "react-icons/ri";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { MdMiscellaneousServices, MdOutlineLocalGroceryStore } from "react-icons/md";
-import { TbBrandBooking, TbReportSearch } from "react-icons/tb";
+import { MdOutlineLocalGroceryStore, MdSell } from "react-icons/md";
+import { TbBrandBooking, TbReportSearch, TbTools } from "react-icons/tb";
+import { FaWrench, FaCogs } from "react-icons/fa";
 import Header from "./Header";
 import { LiaToolsSolid } from "react-icons/lia";
+import { MdMiscellaneousServices } from "react-icons/md";
 
 const Sidebar = () => {
   const [activeLink, setActiveLink] = useState(0);
@@ -118,11 +120,11 @@ const Sidebar = () => {
   return (
     <>
       {/* Responsive Header Bar */}
-      <div className="fixed h-20 top-0 left-0 z-30 w-full bg-blue-900 flex justify-between items-center px-4 py-4">
+      <div className="fixed h-20 top-0 left-0 z-30 w-full bg-indigo-900 flex justify-between items-center px-4 py-4">
         <div className="flex items-center">
           <button
             onClick={windowWidth < 768 ? toggleMenu : toggleDesktopSidebar}
-            className="text-white p-2 rounded-md hover:bg-blue-800 transition-colors mr-2"
+            className="text-white p-2 rounded-md hover:bg-indigo-800 transition-colors mr-2"
             aria-label="Toggle menu"
           >
             <div className="w-6 flex flex-col items-end justify-center gap-1.5">
@@ -137,8 +139,9 @@ const Sidebar = () => {
               }`}></span>
             </div>
           </button>
-          <h1 className="text-white font-bold text-lg">
-            OKBIKES
+          <img src="/vegologo.png" alt="VegoBike Logo" className="h-10 w-10" />
+          <h1 className="text-white font-bold text-3xl mt-2">
+            VegoBike
           </h1>
         </div>
 
@@ -160,7 +163,7 @@ const Sidebar = () => {
       {/* Sidebar navigation */}
       <div
         ref={sidebarRef}
-        className={`fixed inset-y-0 left-0 z-20 bg-blue-900 flex flex-col transition-all duration-300 ease-in-out
+        className={`fixed inset-y-0 left-0 z-20 bg-indigo-950 flex flex-col transition-all duration-300 ease-in-out
                     ${isMenuOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
                     ${isDesktopCollapsed ? 'md:w-20' : 'md:w-72'}
                     pt-16
@@ -174,7 +177,7 @@ const Sidebar = () => {
                   {!link.submenu ? (
                     <Link
                       to={link.path}
-                      className={`flex items-center py-3 px-3 rounded-lg hover:bg-indigo-700 ${activeLink === index ? 'bg-indigo-600 text-white' : 'text-indigo-100'}`}
+                      className={`flex items-center py-3 px-3 rounded-lg hover:bg-indigo-700 ${activeLink === index ? 'bg-indigo-900 text-white' : 'text-indigo-100'}`}
                       onClick={(e) => {
                         e.preventDefault(); // Prevent default Link behavior
                         handleLinkClick(index, link.path);
@@ -182,7 +185,7 @@ const Sidebar = () => {
                     >
                       <div className={`flex items-center ${isDesktopCollapsed && windowWidth >= 768 ? 'justify-center' : ''}`}>
                         <span className="text-xl">{link.icon && React.createElement(link.icon, { size: isDesktopCollapsed && windowWidth >= 768 ? 22 : 18 })}</span>
-                        <span className={`ml-3 text-sm font-medium whitespace-nowrap ${isDesktopCollapsed && windowWidth >= 768 ? 'hidden' : ''}`}>
+                        <span className={`ml-3 text-xs font-medium whitespace-nowrap ${isDesktopCollapsed && windowWidth >= 768 ? 'hidden' : ''}`}>
                           {link.name}
                         </span>
                       </div>
@@ -232,7 +235,7 @@ const Sidebar = () => {
                             <Link
                               key={subitem.id}
                               to={subitem.path}
-                              className="hidden group-hover:block absolute left-full top-0 ml-2 px-4 py-2 bg-blue-800 text-white rounded shadow-lg whitespace-nowrap"
+                              className="hidden group-hover:block absolute left-full top-0 ml-2 px-4 py-2 bg-indigo-800 text-white rounded shadow-lg whitespace-nowrap"
                               onClick={(e) => {
                                 e.preventDefault(); // Prevent default Link behavior
                                 handleLinkClick(index, subitem.path);
@@ -255,7 +258,7 @@ const Sidebar = () => {
         {((windowWidth >= 768 && !isDesktopCollapsed) || (windowWidth < 768 && isMenuOpen)) && (
           <div className="p-4 border-t border-indigo-800">
             <div className="text-xs text-indigo-300 text-center">
-              OKBIKES ADMIN © 2025
+              VegoBike ADMIN © 2025
             </div>
           </div>
         )}

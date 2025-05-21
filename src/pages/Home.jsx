@@ -98,7 +98,7 @@ const Home = () => {
 
   const stats = [
     { title: "Today's Bookings", count: todaysBookings.length, color: "bg-blue-900", icon: "📅" },
-    { title: "Ongoing Bookings", count: 3, color: "bg-yellow-400", icon: "🔄" },
+    { title: "Ongoing Bookings", count: 0, color: "bg-yellow-400", icon: "🔄" },
     { title: "Total Bikes", count: bikes.length, color: "bg-red-500", icon: "🏍️" },
     { title: "Total Bookings", count: bookings.length, color: "bg-teal-400", icon: "📚" },
     { title: "Total Users", count: users.length-1, color: "bg-cyan-400", icon: "👥" },

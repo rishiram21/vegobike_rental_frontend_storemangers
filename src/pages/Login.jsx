@@ -89,7 +89,7 @@ const Login = () => {
         </div>
 
         <h2 className="text-2xl font-bold text-center text-gray-800 dark:text-white mb-6">
-          Admin Login
+          Store Manger Login
         </h2>
 
         {error && (

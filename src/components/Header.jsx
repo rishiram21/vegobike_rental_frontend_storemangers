@@ -27,7 +27,7 @@ const Header = () => {
   }, []);
 
   return (
-    <header className="bg-gradient-to-r from-blue-900 to-blue-800 text-white shadow-lg sticky top-0 z-10">
+    <header className="bg-gradient-to-r from-indigo-900 to-indigo-800 text-white shadow-lg sticky top-0 z-10">
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center px-4 py-3">
           {/* Logo & Mobile Menu */}
@@ -43,28 +43,28 @@ const Header = () => {
             {/* User Profile */}
             <div className="relative" ref={dropdownRef}>
               <div
-                className="flex items-center gap-2 cursor-pointer hover:text-blue-200 transition-colors group"
+                className="flex items-center gap-2 cursor-pointer hover:text-indigo-200 transition-colors group"
                 onClick={() => setShowDropdown(!showDropdown)}
               >
-                <span className="hidden md:block font-medium">Admin</span>
+                <span className="hidden md:block font-medium">Store Manager</span>
                 <div className="relative">
-                  <div className="w-10 h-10 rounded-full bg-blue-700 flex items-center justify-center hover:bg-blue-600 transition-colors">
+                  <div className="w-10 h-10 rounded-full bg-indigo-700 flex items-center justify-center hover:bg-indigo-600 transition-colors">
                     <FaUserCircle className="text-xl" />
                   </div>
-                  <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-400 rounded-full border-2 border-blue-800"></div>
+                  <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-400 rounded-full border-2 border-indigo-800"></div>
                 </div>
               </div>
 
               {showDropdown && (
                 <div className="absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-lg overflow-hidden z-50 animate-slideDown">
-                  <div className="bg-blue-50 p-4 border-b border-gray-200">
+                  <div className="bg-indigo-50 p-4 border-b border-gray-200">
                     <div className="flex items-center gap-3">
-                      <div className="bg-blue-700 text-white p-3 rounded-full">
+                      <div className="bg-indigo-700 text-white p-3 rounded-full">
                         <FaUserCircle className="text-xl" />
                       </div>
                       <div>
                         <p className="text-gray-800 font-medium">Store Manager Account</p>
-                        <p className="text-gray-500 text-sm">manager@gmail.com</p>
+                        {/* <p className="text-gray-500 text-sm">store@gmail.com</p> */}
                       </div>
                     </div>
                   </div>
@@ -75,7 +75,7 @@ const Header = () => {
                         href="/profile"
                         className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors"
                       >
-                        <FaUser className="text-blue-600" />
+                        <FaUser className="text-indigo-600" />
                         <span>My Profile</span>
                       </a> */}
                     </li>
@@ -84,7 +84,7 @@ const Header = () => {
                         href="/settings"
                         className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors"
                       >
-                        <FaCog className="text-blue-600" />
+                        <FaCog className="text-indigo-600" />
                         <span>Account Settings</span>
                       </a> */}
                     </li>
@@ -103,30 +103,30 @@ const Header = () => {
         {/* Mobile Menu Dropdown */}
         {showMobileMenu && (
           <div className="md:hidden transition-all duration-300 transform origin-top animate-fadeIn">
-            <div className="px-4 pt-2 pb-5 space-y-3 bg-blue-800 border-t border-blue-700">
+            <div className="px-4 pt-2 pb-5 space-y-3 bg-indigo-800 border-t border-indigo-700">
               <div className="relative mb-4">
                 <input
                   type="text"
                   placeholder="Search..."
-                  className="w-full px-4 py-2 pl-10 rounded-lg bg-blue-700 text-white placeholder-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  className="w-full px-4 py-2 pl-10 rounded-lg bg-indigo-700 text-white placeholder-indigo-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
                 />
-                <FaSearch className="absolute left-3 top-3 text-blue-300" />
+                <FaSearch className="absolute left-3 top-3 text-indigo-300" />
               </div>
               <ul className="space-y-1">
                 <li>
-                  <a href="/dashboard" className="flex items-center px-3 py-2 rounded-md hover:bg-blue-700 transition-colors">
+                  <a href="/dashboard" className="flex items-center px-3 py-2 rounded-md hover:bg-indigo-700 transition-colors">
                     <FaTachometerAlt className="mr-3" />
                     Dashboard
                   </a>
                 </li>
                 <li>
-                  <a href="/profile" className="flex items-center px-3 py-2 rounded-md hover:bg-blue-700 transition-colors">
+                  <a href="/profile" className="flex items-center px-3 py-2 rounded-md hover:bg-indigo-700 transition-colors">
                     <FaUser className="mr-3" />
                     Profile
                   </a>
                 </li>
                 <li>
-                  <a href="/settings" className="flex items-center px-3 py-2 rounded-md hover:bg-blue-700 transition-colors">
+                  <a href="/settings" className="flex items-center px-3 py-2 rounded-md hover:bg-indigo-700 transition-colors">
                     <FaCog className="mr-3" />
                     Settings
                   </a>
