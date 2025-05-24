@@ -94,7 +94,12 @@ const AllBookings = () => {
       setLoading(true);
       try {
         const response = await apiClient.get("/store-manager/bookings");
-        const sortedData = response.data.sort((a, b) => b.bookingId - a.bookingId);
+
+        // Log the response to check its structure
+        console.log("API Response:", response.data);
+
+        // Access the content property which contains the array
+        const sortedData = response.data.content.sort((a, b) => b.bookingId - a.bookingId);
 
         const combinedBookings = await Promise.all(
           sortedData.map(async (booking) => {
@@ -192,63 +197,115 @@ const AllBookings = () => {
     setBookingStatus(event.target.value);
   };
 
+  // const handleUpdateBooking = async () => {
+  //   if (bookingStatus === BookingStatus.CANCELLED) {
+  //     try {
+  //       const response = await apiClient.put(`/booking/cancel/${selectedBooking.bookingId}`);
+  //       console.log("Booking canceled successfully:", response.data);
+  //       toast.success("Booking canceled successfully!");
+  //       setStatusMessage("Booking canceled successfully!");
+  //     } catch (error) {
+  //       console.error("Error canceling booking:", error);
+  //       toast.error("Failed to cancel booking.");
+  //       setStatusMessage("Failed to cancel booking.");
+  //     }
+  //   } else if (bookingStatus === BookingStatus.BOOKING_ACCEPTED) {
+  //     try {
+  //       const response = await apiClient.put(`/store-manager/bookings/${selectedBooking.bookingId}/status?status=BOOKING_ACCEPTED`);
+  //       console.log("Booking accepted successfully:", response.data);
+  //       toast.success("Booking accepted successfully!");
+  //       setStatusMessage("Booking accepted successfully!");
+  //     } catch (error) {
+  //       console.error("Error accepting booking:", error);
+  //       toast.error("Failed to accept booking, Due to documents not verified.");
+  //       setStatusMessage("Failed to accept booking.");
+  //     }
+  //   } else if (bookingStatus === BookingStatus.COMPLETED) {
+  //     try {
+  //       const token = localStorage.getItem("token");
+  //       const response = await apiClient.put(`/store-manager/bookings/${selectedBooking.bookingId}/status?status=BOOKING_COMPLETED`,
+  //         null,
+  //         {
+  //           headers: {
+  //             Authorization: `Bearer ${token}`,
+  //           },
+  //         }
+  //       );
+  //       console.log("Trip marked as COMPLETED:", response.data);
+  //       toast.success("Trip marked as COMPLETED.");
+  //       setStatusMessage("Trip marked as COMPLETED.");
+  //     } catch (error) {
+  //       console.error("Error marking trip as COMPLETED:", error);
+  //       toast.error("Failed to mark trip as COMPLETED.");
+  //       setStatusMessage("Failed to mark trip as COMPLETED.");
+  //     }
+  //   } else {
+  //     try {
+  //       const response = await apiClient.put(`/booking/update/${selectedBooking.bookingId}`, {
+  //         status: bookingStatus,
+  //       });
+  //       console.log("Booking status updated to:", bookingStatus);
+  //       toast.success(`Booking status updated to: ${bookingStatus}`);
+  //       setStatusMessage(`Booking status updated to: ${bookingStatus}`);
+  //     } catch (error) {
+  //       console.error("Error updating booking status:", error);
+  //       toast.error("Failed to update booking status.");
+  //       setStatusMessage("Failed to update booking status.");
+  //     }
+  //   }
+  // };
+
+
   const handleUpdateBooking = async () => {
+  try {
+    const token = localStorage.getItem("token");
+
     if (bookingStatus === BookingStatus.CANCELLED) {
-      try {
-        const response = await apiClient.put(`/booking/cancel/${selectedBooking.bookingId}`);
-        console.log("Booking canceled successfully:", response.data);
-        toast.success("Booking canceled successfully!");
-        setStatusMessage("Booking canceled successfully!");
-      } catch (error) {
-        console.error("Error canceling booking:", error);
-        toast.error("Failed to cancel booking.");
-        setStatusMessage("Failed to cancel booking.");
-      }
+      const response = await apiClient.put(`/booking/cancel/${selectedBooking.bookingId}`, null, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log("Booking canceled successfully:", response.data);
+      toast.success("Booking canceled successfully!");
+      setStatusMessage("Booking canceled successfully!");
     } else if (bookingStatus === BookingStatus.BOOKING_ACCEPTED) {
-      try {
-        const response = await apiClient.put(`/booking/admin/accept/${selectedBooking.bookingId}`);
-        console.log("Booking accepted successfully:", response.data);
-        toast.success("Booking accepted successfully!");
-        setStatusMessage("Booking accepted successfully!");
-      } catch (error) {
-        console.error("Error accepting booking:", error);
-        toast.error("Failed to accept booking, Due to documents not verified.");
-        setStatusMessage("Failed to accept booking.");
-      }
+      const response = await apiClient.put(`/store-manager/bookings/${selectedBooking.bookingId}/status?status=BOOKING_ACCEPTED`, null, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log("Booking accepted successfully:", response.data);
+      toast.success("Booking accepted successfully!");
+      setStatusMessage("Booking accepted successfully!");
     } else if (bookingStatus === BookingStatus.COMPLETED) {
-      try {
-        const token = localStorage.getItem("token");
-        const response = await apiClient.put(`booking/admin/complete-trip/${selectedBooking.bookingId}`,
-          null,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        console.log("Trip marked as COMPLETED:", response.data);
-        toast.success("Trip marked as COMPLETED.");
-        setStatusMessage("Trip marked as COMPLETED.");
-      } catch (error) {
-        console.error("Error marking trip as COMPLETED:", error);
-        toast.error("Failed to mark trip as COMPLETED.");
-        setStatusMessage("Failed to mark trip as COMPLETED.");
-      }
+      const response = await apiClient.put(`/store-manager/bookings/${selectedBooking.bookingId}/status?status=COMPLETED`, null, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log("Trip marked as COMPLETED:", response.data);
+      toast.success("Trip marked as COMPLETED.");
+      setStatusMessage("Trip marked as COMPLETED.");
     } else {
-      try {
-        const response = await apiClient.put(`/booking/update/${selectedBooking.bookingId}`, {
-          status: bookingStatus,
-        });
-        console.log("Booking status updated to:", bookingStatus);
-        toast.success(`Booking status updated to: ${bookingStatus}`);
-        setStatusMessage(`Booking status updated to: ${bookingStatus}`);
-      } catch (error) {
-        console.error("Error updating booking status:", error);
-        toast.error("Failed to update booking status.");
-        setStatusMessage("Failed to update booking status.");
-      }
+      const response = await apiClient.put(`/booking/update/${selectedBooking.bookingId}`, {
+        status: bookingStatus,
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log("Booking status updated to:", bookingStatus);
+      toast.success(`Booking status updated to: ${bookingStatus}`);
+      setStatusMessage(`Booking status updated to: ${bookingStatus}`);
     }
-  };
+  } catch (error) {
+    console.error("Error updating booking status:", error);
+    toast.error("Failed to update booking status.");
+    setStatusMessage("Failed to update booking status.");
+  }
+};
+
 
   const handleDocumentAction = async (docType, action) => {
     const token = localStorage.getItem("token");
@@ -857,3 +914,4 @@ const AllBookings = () => {
 };
 
 export default AllBookings;
+
