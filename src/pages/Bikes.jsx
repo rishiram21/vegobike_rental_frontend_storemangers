@@ -157,7 +157,7 @@ const Bikes = () => {
 
   const fetchStores = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/store/all");
+      const response = await apiClient.get("/store/all");
       setStores(response.data.content);
     } catch (error) {
       console.error("Error fetching stores data:", error);
@@ -185,8 +185,8 @@ const Bikes = () => {
     let file2 = new File([blob2], { type: "pdf" });
 
     try {
-      const response = await axios.put(
-        `http://localhost:8080/store-manager/vehicles/${editingId}`,
+      const response = await apiClient.put(
+        `/store-manager/vehicles/${editingId}`,
         { ...formData, pucPdfFile: file, insurancePdfFile : file1,  documentPdfFile: file2},
         {
           headers: {
@@ -237,8 +237,8 @@ const Bikes = () => {
   
 
   const handleDeleteBike = (id) => {
-    axios
-      .delete(`http://localhost:8080/bike/${id}`)
+    apiClient
+      .delete(`/bike/${id}`)
       .then(() => setData(data.filter((bike) => bike.id !== id)))
       .catch((error) => console.error("Error deleting data:", error))
       .finally(() => setConfirmDeleteId(null));
