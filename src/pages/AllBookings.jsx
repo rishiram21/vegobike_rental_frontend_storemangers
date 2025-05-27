@@ -197,66 +197,7 @@ const AllBookings = () => {
     setBookingStatus(event.target.value);
   };
 
-  // const handleUpdateBooking = async () => {
-  //   if (bookingStatus === BookingStatus.CANCELLED) {
-  //     try {
-  //       const response = await apiClient.put(`/booking/cancel/${selectedBooking.bookingId}`);
-  //       console.log("Booking canceled successfully:", response.data);
-  //       toast.success("Booking canceled successfully!");
-  //       setStatusMessage("Booking canceled successfully!");
-  //     } catch (error) {
-  //       console.error("Error canceling booking:", error);
-  //       toast.error("Failed to cancel booking.");
-  //       setStatusMessage("Failed to cancel booking.");
-  //     }
-  //   } else if (bookingStatus === BookingStatus.BOOKING_ACCEPTED) {
-  //     try {
-  //       const response = await apiClient.put(`/store-manager/bookings/${selectedBooking.bookingId}/status?status=BOOKING_ACCEPTED`);
-  //       console.log("Booking accepted successfully:", response.data);
-  //       toast.success("Booking accepted successfully!");
-  //       setStatusMessage("Booking accepted successfully!");
-  //     } catch (error) {
-  //       console.error("Error accepting booking:", error);
-  //       toast.error("Failed to accept booking, Due to documents not verified.");
-  //       setStatusMessage("Failed to accept booking.");
-  //     }
-  //   } else if (bookingStatus === BookingStatus.COMPLETED) {
-  //     try {
-  //       const token = localStorage.getItem("token");
-  //       const response = await apiClient.put(`/store-manager/bookings/${selectedBooking.bookingId}/status?status=BOOKING_COMPLETED`,
-  //         null,
-  //         {
-  //           headers: {
-  //             Authorization: `Bearer ${token}`,
-  //           },
-  //         }
-  //       );
-  //       console.log("Trip marked as COMPLETED:", response.data);
-  //       toast.success("Trip marked as COMPLETED.");
-  //       setStatusMessage("Trip marked as COMPLETED.");
-  //     } catch (error) {
-  //       console.error("Error marking trip as COMPLETED:", error);
-  //       toast.error("Failed to mark trip as COMPLETED.");
-  //       setStatusMessage("Failed to mark trip as COMPLETED.");
-  //     }
-  //   } else {
-  //     try {
-  //       const response = await apiClient.put(`/booking/update/${selectedBooking.bookingId}`, {
-  //         status: bookingStatus,
-  //       });
-  //       console.log("Booking status updated to:", bookingStatus);
-  //       toast.success(`Booking status updated to: ${bookingStatus}`);
-  //       setStatusMessage(`Booking status updated to: ${bookingStatus}`);
-  //     } catch (error) {
-  //       console.error("Error updating booking status:", error);
-  //       toast.error("Failed to update booking status.");
-  //       setStatusMessage("Failed to update booking status.");
-  //     }
-  //   }
-  // };
-
-
-  const handleUpdateBooking = async () => {
+ const handleUpdateBooking = async () => {
   try {
     const token = localStorage.getItem("token");
 
@@ -305,6 +246,7 @@ const AllBookings = () => {
     setStatusMessage("Failed to update booking status.");
   }
 };
+
 
 
   const handleDocumentAction = async (docType, action) => {

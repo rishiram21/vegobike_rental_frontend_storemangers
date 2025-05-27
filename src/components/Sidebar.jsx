@@ -120,8 +120,8 @@ const Sidebar = () => {
   return (
     <>
       {/* Responsive Header Bar */}
-      <div className="fixed h-20 top-0 left-0 z-30 w-full bg-indigo-900 flex justify-between items-center px-4 py-4">
-        <div className="flex items-center">
+      <div className="fixed h-16 top-0 left-0 z-30 w-full bg-indigo-900 flex justify-between items-center px-4 py-4">
+        <div className="flex items-center py-3 px-3">
           <button
             onClick={windowWidth < 768 ? toggleMenu : toggleDesktopSidebar}
             className="text-white p-2 rounded-md hover:bg-indigo-800 transition-colors mr-2"
@@ -140,8 +140,8 @@ const Sidebar = () => {
             </div>
           </button>
           <img src="/vegologo.png" alt="VegoBike Logo" className="h-10 w-10" />
-          <h1 className="text-white font-bold text-3xl mt-2">
-            VegoBike
+          <h1 className="text-white font-bold text-2xl mt-2">
+            VeGoBike
           </h1>
         </div>
 
